@@ -1,7 +1,6 @@
 import configparser
 from sqlalchemy import text
-from organisedcode.database_handler import *
-from organisedcode.api_handler import get_long_lat, extract_long_lat
+from organisedcode import *
 
 # read the configuration file
 config = configparser.ConfigParser()
