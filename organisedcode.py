@@ -1,13 +1,19 @@
 import pandas as pd
 import requests
-from sqlalchemy import create_engine, Table, MetaData, insert, select
+from sqlalchemy import create_engine, Table, MetaData, insert, select, URL
 
 def get_data(filename_csv):
     data = pd.read_csv(filename_csv)
     return data.to_dict('records')
 
 def get_sql_engine(user, passwd, host, database):
-    conn_string = f'postgresql+psycopg2://{user}:{passwd}@{host}:5432/{database}'
+    conn_string = URL.create(
+        "postgresql+psycopg2",
+        username=user,
+        password=passwd,
+        host=host,
+        database=database,
+    )
     return create_engine(conn_string)
 
 def connection_manager(sql_engine, query, data =[]):
