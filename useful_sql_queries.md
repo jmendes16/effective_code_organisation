@@ -22,7 +22,9 @@ GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO engineer;
 
 
 
-### Notification and trigger created
+### Notification and trigger created, this is how the python script knows the table has been updated.  
+### This is not the recommended way of doing this.  You should make use of an orchestration tool like Airflow.  
+### If you have PgAdmin on your local machine you can run this for testing the weather_automation.py script.  
 
   -- Create a function that sends a NOTIFY message
 CREATE OR REPLACE FUNCTION notify_event() RETURNS trigger AS $$

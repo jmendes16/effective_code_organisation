@@ -1,3 +1,6 @@
+### run this before inserting a row into the transactions table ###
+### make sure the trigger and pg_notify function are set up before ###
+
 import psycopg2
 import select
 import configparser
@@ -66,7 +69,7 @@ def handle_event(notify):
         if isinstance(tuple_value, tuple):
             customer_id = int(tuple_value[0])
             time = tuple_value[1]
-            # retrieve geolocation data
+            # retrieve geolocation data, required for the weather API call
             query = text(f'''
                 SELECT longitude, latitude
                 FROM location_data
